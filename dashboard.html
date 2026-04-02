@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thalorix Intelligence Dashboard</title>
+    <!-- Connect our new split CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Load Lucide icons for a premium look -->
+    <script src="https://unpkg.com/lucide@latest"></script> 
+</head>
+<body>
+
+    <header>
+        <div>
+            <h1>Thalorix Intelligence</h1>
+            <div class="subtitle">Live Cyber Threat Monitoring Engine</div>
+        </div>
+        <div class="header-actions">
+            <!-- Space for future header utilities -->
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+        
+        <!-- Top Priority / Overview Widgets -->
+        <div class="top-widgets">
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="color: #38bdf8;">
+                        <i data-lucide="activity"></i>
+                    </div>
+                    <h2>Threat Intelligence Network Activity</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="threatChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <div class="card-icon" style="color: #a855f7;">
+                        <i data-lucide="brain-circuit"></i>
+                    </div>
+                    <h2>Deep AI Threat Analysis</h2>
+                </div>
+                <div class="ai-section">
+                    <div class="input-group">
+                        <input id="apiKey" type="password" placeholder="Enter OpenRouter API Key for AI Insights">
+                        <button id="analyzeBtn" onclick="analyzeData()">
+                            <i data-lucide="sparkles"></i> Analyze Signals
+                        </button>
+                    </div>
+                    <div id="aiAnalysis" class="analysis-window">
+                        Connect your API key to generate contextual risk assessments based on live data feeds.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Main Content Feeds Grid -->
+        <div class="main-grid">
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="color: #ef4444;">
+                        <i data-lucide="shield-alert"></i>
+                    </div>
+                    <h2>Cyber Security Alerts</h2>
+                </div>
+                <ul id="cyber"></ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="color: #f97316;">
+                        <i data-lucide="unlock"></i>
+                    </div>
+                    <h2>Latest Data Leaks</h2>
+                </div>
+                <ul id="leaks"></ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="color: #22c55e;">
+                        <i data-lucide="terminal"></i>
+                    </div>
+                    <h2>Linux & Open Source</h2>
+                </div>
+                <ul id="linux"></ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="color: #3b82f6;">
+                        <i data-lucide="building-2"></i>
+                    </div>
+                    <h2>Tech Sector & Policy</h2>
+                </div>
+                <ul id="tech"></ul>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="color: #10b981;">
+                        <i data-lucide="bot"></i>
+                    </div>
+                    <h2>AI Industry News</h2>
+                </div>
+                <ul id="ai"></ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="color: #8b5cf6;">
+                        <i data-lucide="cpu"></i>
+                    </div>
+                    <h2>Nvidia & Microsoft</h2>
+                </div>
+                <ul id="companies"></ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="color: #0ea5e9;">
+                        <i data-lucide="twitter"></i>
+                    </div>
+                    <h2>Live OSINT Sources (X)</h2>
+                </div>
+                <ul>
+                    <li><a href="https://x.com/FalconFeedsio" target="_blank">@FalconFeedsio</a></li>
+                    <li><a href="https://x.com/vxunderground" target="_blank">@vxunderground</a></li>
+                    <li><a href="https://x.com/DarkWebInformer" target="_blank">@DarkWebInformer</a></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="color: #38bdf8;">
+                        <i data-lucide="send"></i>
+                    </div>
+                    <h2>Telegram Intelligence</h2>
+                </div>
+                <ul>
+                    <li><a href="https://t.me/FalconFeeds" target="_blank">FalconFeeds Channel</a></li>
+                    <li><a href="https://t.me/DarkWebInformer" target="_blank">DarkWebInformer Intel</a></li>
+                    <li><a href="https://t.me/hackmanac_cybernews" target="_blank">Hackmanac Cyber News</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        Thalorix Tech Intelligence Engine © 2026 | Powered by OSINT & AI
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    
+    <!-- Connect our split JS logic file -->
+    <script src="app.js"></script>
+</body>
+</html>
