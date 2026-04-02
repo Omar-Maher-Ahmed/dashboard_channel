@@ -123,74 +123,6 @@ class ThreatChart {
 }
 
 
-// AI Analysis Logic
-async function analyzeData() {
-    const container = document.getElementById('aiAnalysis');
-    const apiKeyInput = document.getElementById('apiKey');
-    const analyzeBtn = document.getElementById('analyzeBtn');
-
-    const apiKey = apiKeyInput ? apiKeyInput.value.trim() : '';
-
-    if (apiKey) {
-        localStorage.setItem('thalorix_api', apiKey);
-    } else {
-        container.innerHTML = '<span style="color:#ef4444">⚠️ Please enter an OpenRouter API Key</span>';
-        return;
-    }
-
-    container.innerHTML = '<div style="display:flex;align-items:center;gap:10px;"><div class="skeleton" style="width:20px;height:20px;border-radius:50%;margin:0;"></div> Analyzing recent threat patterns...</div>';
-    analyzeBtn.disabled = true;
-    analyzeBtn.style.opacity = '0.7';
-
-    // Collect recent titles from lists
-    const links = Array.from(document.querySelectorAll('ul li a')).map(a => a.textContent).slice(0, 50).join('\n');
-    let textToAnalyze = links.slice(0, 3000); // safety wrapper
-    
-    if(!textToAnalyze.trim()) textToAnalyze = "No recent data loaded.";
-
-    try {
-        const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`,
-                'HTTP-Referer': window.location.origin,
-                'X-Title': 'Thalorix Dashboard'
-            },
-            body: JSON.stringify({
-                model: 'google/gemini-2.5-flash', 
-                messages: [
-                    {
-                        role: 'system',
-                        content: 'You are an elite cybersecurity threat analyst. Briefly summarize the key threats from the provided news headlines and highlight most important risks in a short, punchy paragraph. Use bullet points for top 3 threats.'
-                    },
-                    {
-                        role: 'user',
-                        content: textToAnalyze
-                    }
-                ]
-            })
-        });
-
-        const data = await response.json();
-
-        if (data.error) {
-            container.innerHTML = `<span style="color:#ef4444">❌ API Error: ${data.error.message}</span>`;
-        } else {
-            const result = data.choices?.[0]?.message?.content || 'No analysis returned';
-            // Parse markdown slightly
-            container.innerHTML = result.replace(/\n\n/g, '<br><br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        }
-
-    } catch (e) {
-        console.error(e);
-        container.innerHTML = '<span style="color:#ef4444">❌ AI Request Failed (Check Console)</span>';
-    } finally {
-        analyzeBtn.disabled = false;
-        analyzeBtn.style.opacity = '1';
-    }
-}
 
 // Initialization
 document.addEventListener('DOMContentLoaded', () => {
@@ -201,9 +133,5 @@ document.addEventListener('DOMContentLoaded', () => {
         new ThreatChart('threatChart');
     }, 100);
 
-    // Load saved API key
-    const apiKeyInput = document.getElementById('apiKey');
-    if (apiKeyInput && localStorage.getItem('thalorix_api')) {
-        apiKeyInput.value = localStorage.getItem('thalorix_api');
-    }
+
 });

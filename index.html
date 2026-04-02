@@ -26,7 +26,7 @@
         <!-- Top Priority / Overview Widgets -->
         <div class="top-widgets">
             
-            <div class="card">
+            <div class="card" style="grid-column: 1 / -1;">
                 <div class="card-header">
                     <div class="card-icon" style="color: #38bdf8;">
                         <i data-lucide="activity"></i>
@@ -35,26 +35,6 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="threatChart"></canvas>
-                </div>
-            </div>
-
-            <div class="card" style="grid-column: span 2;">
-                <div class="card-header">
-                    <div class="card-icon" style="color: #a855f7;">
-                        <i data-lucide="brain-circuit"></i>
-                    </div>
-                    <h2>Deep AI Threat Analysis</h2>
-                </div>
-                <div class="ai-section">
-                    <div class="input-group">
-                        <input id="apiKey" type="password" placeholder="Enter OpenRouter API Key for AI Insights">
-                        <button id="analyzeBtn" onclick="analyzeData()">
-                            <i data-lucide="sparkles"></i> Analyze Signals
-                        </button>
-                    </div>
-                    <div id="aiAnalysis" class="analysis-window">
-                        Connect your API key to generate contextual risk assessments based on live data feeds.
-                    </div>
                 </div>
             </div>
 
